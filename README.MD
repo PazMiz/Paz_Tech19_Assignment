@@ -1,4 +1,3 @@
-Here's the updated README including the summary of challenges and their solutions:
 
 ---
 
