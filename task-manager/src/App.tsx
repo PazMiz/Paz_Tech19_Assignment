@@ -26,9 +26,12 @@ const App: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log("Fetching tasks and categories...");
     getTasks().then(setTasks).catch(console.error);
     getCategories().then(setCategories).catch(console.error);
   }, []);
+  
+
 
   const addTask = async (newTask: { title: string; description?: string; category_id?: number }) => {
     try {

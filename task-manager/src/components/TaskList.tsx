@@ -1,17 +1,19 @@
+// Import necessary React and Material-UI components
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import TaskForm from "./TaskForm"; // Import the TaskForm component
+import TaskForm from "./TaskForm"; // Import the TaskForm component for task creation/editing
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Tooltip } from "@mui/material";
-import { updateTask } from '../services/api';
+import { updateTask } from '../services/api'; // Function to call API for updating tasks
 
+// Define interfaces for TypeScript type-checking
 interface Category {
   id: number;
   name: string;
@@ -26,15 +28,17 @@ interface Task {
   category?: string; // Category as string
 }
 
+// Props type for the TaskList component
 interface TaskListProps {
   tasks: Task[];
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>; // Added this line for type
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>; // State setter for task array
   categories: Category[];
-  onEdit: (task: Task) => void;
-  onDelete: (id: number) => void;
-  onToggleComplete: (id: number) => void;
+  onEdit: (task: Task) => void; // Function to handle editing a task
+  onDelete: (id: number) => void; // Function to handle deleting a task
+  onToggleComplete: (id: number) => void; // Function to toggle task completion
 }
 
+// Main TaskList component
 const TaskList: React.FC<TaskListProps> = ({
   tasks,
   setTasks,
@@ -42,6 +46,7 @@ const TaskList: React.FC<TaskListProps> = ({
   onDelete,
   onToggleComplete,
 }) => {
+  // State hooks for managing task form and dialog
   const [open, setOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -49,26 +54,28 @@ const TaskList: React.FC<TaskListProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortOrder, ] = useState<'asc' | 'desc'>('asc');
 
+  // Function to open the edit form with the task details
   const handleEdit = (task: Task) => {
     setTaskToEdit(task);
     setOpen(true);
   };
 
+  // Function to close the edit form
   const handleClose = () => {
     setOpen(false);
     setTaskToEdit(null);
   };
 
+  // Function to submit edited task data to the backend and update UI
   const handleEditSubmit = async (editedTask: Task) => {
     try {
-      // Call the API and get the updated task
-      const updatedTask = await updateTask(editedTask);
+      const updatedTask = await updateTask(editedTask); // API call to update task
 
-      // Update the state with the updated task returned from the API
+      // Update the task state with the edited task data
       setTasks((prevTasks) => {
         return prevTasks.map((task) => {
           if (task.id === updatedTask.id) {
-            return { ...task, ...updatedTask }; // Make sure category and other fields are updated
+            return { ...task, ...updatedTask }; // Merge updated task data
           }
           return task;
         });
@@ -80,11 +87,13 @@ const TaskList: React.FC<TaskListProps> = ({
     }
   };
 
+  // Function to set task ID for deletion and open confirmation dialog
   const handleDeleteClick = (taskId: number) => {
     setTaskToDelete(taskId);
     setDialogOpen(true);
   };
 
+  // Function to confirm deletion and remove the task from state
   const handleConfirmDelete = () => {
     if (taskToDelete !== null) {
       onDelete(taskToDelete);
@@ -93,15 +102,18 @@ const TaskList: React.FC<TaskListProps> = ({
     }
   };
 
+  // Function to close the delete confirmation dialog
   const handleDialogClose = () => {
     setDialogOpen(false);
     setTaskToDelete(null);
   };
 
+  // Filter tasks based on selected category or display all
   const filteredTasks = selectedCategory
     ? tasks.filter((task) => task.category === selectedCategory)
     : tasks;
 
+  // Sort tasks by creation date in the specified order
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     const comparison = a.created_at.localeCompare(b.created_at);
     return sortOrder === 'asc' ? comparison : -comparison;
@@ -109,25 +121,21 @@ const TaskList: React.FC<TaskListProps> = ({
 
   return (
     <Box>
+      {/* Category filter section */}
       <Box sx={{ marginBottom: "20px" }}>
         <Typography variant="h6">Filter by Category:</Typography>
         <Button onClick={() => setSelectedCategory(null)}>All Tasks</Button>
         {categories.map((category) => (
           <Button
             key={category.id}
-            onClick={() => setSelectedCategory(category.name)}
+            onClick={() => setSelectedCategory(category.name)} // Set category filter
           >
             {category.name}
           </Button>
         ))}
       </Box>
 
-      <Box sx={{ marginBottom: "20px" }}>
-        {/* <Typography variant="h6">Sort by Date:</Typography>
-        <Button onClick={() => setSortOrder('asc')}>Ascending</Button>
-        <Button onClick={() => setSortOrder('desc')}>Descending</Button> */}
-      </Box>
-
+      {/* Display the list of tasks */}
       {sortedTasks.map((task) => (
         <Paper
           key={task.id}
@@ -139,6 +147,7 @@ const TaskList: React.FC<TaskListProps> = ({
             borderRadius: "8px",
           }}
         >
+          {/* Display task title */}
           <Typography
             variant="h6"
             className="task-title"
@@ -155,6 +164,7 @@ const TaskList: React.FC<TaskListProps> = ({
             Title: {task.title}
           </Typography>
 
+          {/* Display task description */}
           <Box
             sx={{
               display: 'flex',
@@ -182,7 +192,7 @@ const TaskList: React.FC<TaskListProps> = ({
                   textOverflow: 'ellipsis',
                   display: '-webkit-box',
                   WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: 3, // Limits to 3 lines and adds ellipsis
+                  WebkitLineClamp: 3, // Limit description to 3 lines
                 }}
               >
                 Desc: {task.description || "No description available"}
@@ -190,8 +200,7 @@ const TaskList: React.FC<TaskListProps> = ({
             </Tooltip>
           </Box>
 
-
-          {/* Category Box with Tooltip for Full View */}
+          {/* Display task category */}
           <Box
             sx={{
               display: 'flex',
@@ -237,6 +246,7 @@ const TaskList: React.FC<TaskListProps> = ({
             </Tooltip>
           </Box>
 
+          {/* Action buttons for task */}
           <Box className="task-actions" sx={{ display: "flex", gap: "12px" }}>
             <Button
               onClick={() => onToggleComplete(task.id)}
@@ -255,6 +265,7 @@ const TaskList: React.FC<TaskListProps> = ({
         </Paper>
       ))}
 
+      {/* Task editing form */}
       <TaskForm
         onEdit={handleEditSubmit}
         taskToEdit={taskToEdit}
@@ -267,8 +278,9 @@ const TaskList: React.FC<TaskListProps> = ({
         }}
       />
 
+      {/* Dialog for confirming task deletion */}
       <Dialog open={dialogOpen} onClose={handleDialogClose}>
-        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogTitle>Confirm Deletion</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Are you sure you want to delete this task? This action cannot be undone.
@@ -278,8 +290,8 @@ const TaskList: React.FC<TaskListProps> = ({
           <Button onClick={handleDialogClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleConfirmDelete} color="error">
-            Delete
+          <Button onClick={handleConfirmDelete} color="secondary">
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>
