@@ -1,3 +1,4 @@
+Here's the updated README including the summary of challenges and their solutions:
 
 ---
 
@@ -117,12 +118,20 @@ The backend will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 ```
 
 ## Code Overview
+---
+
+## Code Overview
 
 ### Frontend
 - **App.tsx**: Main React component managing state and rendering the UI.
 - **TaskForm.tsx**: Form component for adding and editing tasks.
 - **TaskList.tsx**: Displays the list of tasks with options to edit, delete, toggle completion, and mark as complete.
+- **TaskItem.tsx**: A component that represents an individual task. This component encapsulates the logic and rendering of each task, making the code more modular and easier to maintain.
 - **api.ts**: Contains functions for API calls to the backend.
+
+---
+
+This will help users understand that `TaskItem.tsx` plays a crucial part in making the code modular and manageable.
 
 ### Backend
 - **app.py**: Main Flask application file defining routes and handling API requests.
@@ -134,14 +143,19 @@ The backend will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 3. Access the application at [http://localhost:3000/](http://localhost:3000/) in your browser.
 4. Use the UI to manage tasks, including adding, editing, deleting, filtering, sorting, and marking tasks as completed.
 
-## Future Enhancements
-- **Search Functionality**: Add search capabilities for tasks by title or description.
-- **Pagination**: Introduce pagination for large task lists.
+## Challenges and Solutions
 
+### Duplicate API Calls in `useEffect`
+- **Challenge**: `useEffect` was running twice, leading to duplicate API calls for fetching tasks and categories.
+- **Solution**: Identified that `React.StrictMode` in development mode was causing the double invocation. Removed `React.StrictMode` for testing, ensuring `useEffect` runs only once on component mount.
+
+### Debugging API Call Flow
+- **Challenge**: Determining why duplicate network calls were occurring.
+- **Solution**: Used `console.log` statements to track the behavior and confirmed `React.StrictMode` was the cause, not the code itself.
 
 ## Acknowledgements
 - **Material-UI**: For providing the UI components.
 - **Flask**: For the lightweight backend framework.
 
----
+--- 
 
