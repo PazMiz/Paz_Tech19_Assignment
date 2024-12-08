@@ -1,0 +1,182 @@
+/* General button styling */
+button {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Button for editing task */
+.task-actions button.edit {
+  background-color: #28a745; /* Green for editing */
+  color: #fff;
+}
+
+.task-actions button.edit:hover {
+  background-color: #218838;
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* Button for deleting task */
+.task-actions button.delete {
+  background-color: #dc3545; /* Red for deleting */
+  color: #fff;
+}
+
+.task-actions button.delete:hover {
+  background-color: #c82333;
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* Completed task style */
+.task-item.completed {
+  text-decoration: line-through;
+  background-color: #e9ecef; /* Light gray */
+  color: #888;
+}
+
+/* Optional: Highlight completed task when toggling completion */
+.task-item.completed button.toggle-completion {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.task-item.completed button.toggle-completion:hover {
+  background-color: #6c757d;
+}
+
+/* Task list styling */
+.task-list {
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* Task item */
+.task-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, transform 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.task-item:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Title styling */
+.task-title {
+  font-size: 1.6rem; /* Slightly larger for emphasis */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+/* Task description styling */
+.task-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  text-align: justify;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  transition: max-height 0.3s, overflow 0.3s;
+}
+
+/* Hover effect for expanded task description */
+.task-item:hover .task-description {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Category styling */
+.task-category-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Category row */
+.task-category {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+/* Category label */
+.task-category-title {
+  margin-right: 5px;
+  color: #333;
+}
+
+/* Category description */
+.task-category-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+  display: inline-block;
+}
+
+/* Category span */
+.task-category-description span {
+  color: #28a745; /* Green for the assigned category */
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
+button[type="submit"]:hover {
+  background-color: #357ab7;
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-item {
+    width: 100%;
+  }
+
+  .task-title {
+    font-size: 1.4rem;
+  }
+
+  .task-description {
+    font-size: 1rem;
+  }
+
+  .task-category-title {
+    font-size: 1.2rem;
+  }
+
+  .task-category-description {
+    font-size: 1rem;
+  }
+}
