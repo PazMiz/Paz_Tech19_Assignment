@@ -39,7 +39,6 @@ const TaskList: React.FC<TaskListProps> = ({
   tasks,
   setTasks,
   categories,
-  onEdit,
   onDelete,
   onToggleComplete,
 }) => {
@@ -48,7 +47,7 @@ const TaskList: React.FC<TaskListProps> = ({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortOrder, ] = useState<'asc' | 'desc'>('asc');
 
   const handleEdit = (task: Task) => {
     setTaskToEdit(task);
