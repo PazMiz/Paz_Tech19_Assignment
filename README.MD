@@ -124,7 +124,7 @@ The backend will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 ### Frontend
 - **App.tsx**: Main React component managing state and rendering the UI.
 - **TaskForm.tsx**: Form component for adding and editing tasks.
-- **TaskList.tsx**: Displays the list of tasks with options to edit, delete, toggle completion, and mark as complete.
+- **TaskList.tsx**: Displays the list of tasks with options to edit, delete, and mark as complete.
 - **TaskItem.tsx**: A component that represents an individual task. This component encapsulates the logic and rendering of each task, making the code more modular and easier to maintain.
 - **api.ts**: Contains functions for API calls to the backend.
 
