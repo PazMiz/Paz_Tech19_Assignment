@@ -10,7 +10,6 @@ This web application allows users to manage tasks effectively. Built using **Rea
 - **Task Management**: Create, edit, delete, and view tasks.
 - **Mark as Complete**: Tasks can be marked as complete, indicating their status.
 - **Category Filtering**: Filter tasks by category.
-- **Sorting Options**: Sort tasks by title.
 - **Responsive Design**: Built with **Material-UI** for a seamless user experience.
 - **Category Management**: Tasks can be assigned to different categories.
 
