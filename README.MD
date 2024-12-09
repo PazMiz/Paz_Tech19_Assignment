@@ -129,8 +129,6 @@ The backend will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
 ---
 
-This will help users understand that `TaskItem.tsx` plays a crucial part in making the code modular and manageable.
-
 ### Backend
 - **app.py**: Main Flask application file defining routes and handling API requests.
 - **requirements.txt**: Python package dependencies for the backend.
