@@ -12,6 +12,7 @@ This web application allows users to manage tasks effectively. Built using **Rea
 - **Category Filtering**: Filter tasks by category.
 - **Responsive Design**: Built with **Material-UI** for a seamless user experience.
 - **Category Management**: Tasks can be assigned to different categories.
+- **Accessibility Enhancements**: Added Beyond the basic Requirments Improvements tab navigation support to enable full navigation and interaction with the website without using a mouse. This ensures compliance with accessibility standards and improves the experience for users relying on keyboard navigation.
 
 ## Tech Stack
 - **Frontend**: React, TypeScript, Material-UI
