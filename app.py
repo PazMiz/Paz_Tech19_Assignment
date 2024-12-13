@@ -15,7 +15,8 @@ app.config['SECRET_KEY'] = "random string"
 
 # Initialize database
 db = SQLAlchemy(app)
-CORS(app)
+# Allow CORS only from your frontend
+CORS(app, resources={r"/*": {"origins": "https://earnest-raindrop-60dd48.netlify.app"}})
 
 
 
