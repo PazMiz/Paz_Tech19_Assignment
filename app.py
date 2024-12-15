@@ -4,8 +4,6 @@ from sqlalchemy import Column, String, Integer, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
-
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -15,11 +13,7 @@ app.config['SECRET_KEY'] = "random string"
 
 # Initialize database
 db = SQLAlchemy(app)
-# Allow CORS only from your frontend
-CORS(app, origins=["https://cool-gumption-d73c92.netlify.app"])
-
-
-
+CORS(app)
 
 # Define the Category model
 class Category(db.Model):
@@ -177,8 +171,6 @@ def bad_request_error(error):
 @app.errorhandler(500)
 def internal_server_error(error):
     return jsonify({'error': 'Internal server error'}), 500
-
-
 
 # Main entry point
 if __name__ == "__main__":
