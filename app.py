@@ -13,8 +13,7 @@ app.config['SECRET_KEY'] = "random string"
 
 # Initialize database
 db = SQLAlchemy(app)
-# Allow CORS only from your frontend
-CORS(app, origins=["https://cool-gumption-d73c92.netlify.app"])
+CORS(app)
 
 # Define the Category model
 class Category(db.Model):
