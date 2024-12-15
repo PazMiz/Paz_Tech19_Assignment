@@ -6,9 +6,6 @@
 ## Overview
 This web application allows users to manage tasks effectively. Built using **React with TypeScript** for the frontend and **Flask** for the backend, it includes features such as creating, reading, updating, and deleting tasks, as well as filtering and sorting tasks by category. The app is designed to be responsive and user-friendly, utilizing **Material-UI** for a modern interface.
 
-## Deployed to live netify - https://cool-gumption-d73c92.netlify.app/ 
-## Deployed backend - https://paz-tech19-assignment.onrender.com/tasks 
-
 ## Features
 - **Task Management**: Create, edit, delete, and view tasks.
 - **Mark as Complete**: Tasks can be marked as complete, indicating their status.
